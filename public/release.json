@@ -1,0 +1,14 @@
+{
+  "appName": "SwiftShare",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "releaseDate": "",
+  "fileName": "swiftshare.apk",
+  "downloadUrl": "/downloads/swiftshare.apk",
+  "fileSize": "",
+  "sha256": "",
+  "minimumAndroidVersion": "",
+  "available": false,
+  "releaseNotes": ["Initial release"],
+  "supportedFeatures": []
+}
