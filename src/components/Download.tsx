@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Download, ShieldCheck } from "lucide-react";
+import { Copy, Check, Download as DownloadIcon, ShieldCheck } from "lucide-react";
 import { useRelease } from "../release";
 import type { Release } from "../types";
 function ReleaseCard({ item, available, featured=false }: { item: Release | null; available: boolean; featured?: boolean }) {
@@ -10,7 +10,7 @@ function ReleaseCard({ item, available, featured=false }: { item: Release | null
   <div className="release-top"><span className="release-label">{item.label}</span>{featured&&<span className="latest-tag">LATEST VERSION</span>}</div>
   <h3>SwiftShare <strong>V{item.version}</strong></h3><p className="release-sub">{featured?'The newest SwiftShare release.':'Previous stable release.'}</p>
   <div className="release-meta"><span><b>File size</b>{item.fileSize}</span><span><b>Android</b>{item.minimumAndroidVersion?`${item.minimumAndroidVersion}+`:'See device requirements'}</span><span><b>Release</b>{item.releaseDate||'Release build'}</span></div>
-  {available ? <a className={`btn ${featured?'btn-primary':'btn-ghost'} release-download`} href={item.downloadUrl} download={item.fileName}><Download size={18}/> Download {item.label} APK</a> : <button className="btn btn-ghost release-download" disabled>APK unavailable</button>}
+  {available ? <a className={`btn ${featured?'btn-primary':'btn-ghost'} release-download`} href={item.downloadUrl} download={item.fileName}><DownloadIcon size={18}/> Download {item.label} APK</a> : <button className="btn btn-ghost release-download" disabled>APK unavailable</button>}
   <div className="checksum"><div><b>SHA-256</b><code>{item.sha256}</code></div><button onClick={copy} aria-label="Copy SHA-256" title="Copy checksum">{copied?<Check size={17}/>:<Copy size={17}/>}</button></div>
   <p className="release-note"><ShieldCheck size={15}/> Download only from the official SwiftShare website. Android may scan sideloaded apps.</p>
  </article>
