@@ -1,62 +1,44 @@
-# SwiftShare website
+# SwiftShare Official Website
 
-Official download site for the SwiftShare Android app. Static React + Vite + TypeScript, no backend. Not a PWA: it distributes an APK, it does not install the app.
+React + Vite + TypeScript website for SwiftShare.
 
 ## Run locally
 
-```bash
+Requires Node.js 20.19+ or 22.12+ (Vite 7 requirement).
+
+```powershell
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # type-check + production build into dist/
-npm run preview    # serve the production build locally
+npm run dev
 ```
 
-Requires Node 18 or newer.
+Production build: `npm run build`
 
-## Publish a new APK release
+## Releases included
 
-All release information lives in `public/release.json`. Nothing is hardcoded in components.
+- Latest: SwiftShare V2 (`public/downloads/SwiftShare_V2.apk`) — 48.45 MB
+- Stable: SwiftShare V1.0.0 (`public/downloads/SwiftShare-v1.0.0.apk`) — 47.28 MB
 
-1. Put the new APK in `public/downloads/` (replace the old one, keep the name in `fileName`).
-2. Calculate its SHA-256:
-   - macOS/Linux: `shasum -a 256 public/downloads/swiftshare.apk`
-   - Windows PowerShell: `Get-FileHash public\downloads\swiftshare.apk -Algorithm SHA256`
-3. Edit `public/release.json`:
+Both APKs are included in this project. Their SHA-256 checksums are recorded in `public/release.json`. Verify checksums before publishing a replacement.
 
-| Field | Meaning |
-|---|---|
-| `version`, `versionCode` | Must match the APK |
-| `releaseDate` | e.g. `2026-12-01` |
-| `fileName` | APK file name inside `public/downloads/` |
-| `downloadUrl` | `/downloads/<fileName>` |
-| `fileSize` | e.g. `18.4 MB` |
-| `sha256` | Checksum from step 2 |
-| `minimumAndroidVersion` | e.g. `8.0` |
-| `available` | `true` to enable downloads |
-| `releaseNotes` | List of short strings |
-| `supportedFeatures` | Feature ids the APK really supports: `apk-sharing`, `media-sharing`, `file-sharing`, `qr-connection`, `transfer-progress`, `transfer-resume`, `simple-ux` |
+To update a release, replace the APK file, update its version, file size, checksum, release notes and availability in `public/release.json`, then commit and push. The download cards check that the APK URLs return a file before enabling the links.
 
-4. `git add . && git commit -m "Release 1.0.0" && git push`. Vercel deploys automatically.
+## Add real app screenshots later
 
-Safeguards: the Download button stays disabled unless `available` is `true` **and** the APK URL actually responds with a non-HTML file. Features show as Planned until listed in `supportedFeatures`.
+Put screenshots in `public/screenshots/`. Update the `slots` array in `src/components/Screenshots.tsx` to render `<img>` elements with those paths. The current gallery contains clearly marked placeholders, not fabricated app screenshots.
 
-Notes:
-- GitHub rejects single files over 100 MB. For larger APKs use Git LFS or host the file elsewhere and put its full HTTPS URL in `downloadUrl`.
-- Sign every release with the same key, or Android will not install updates over older versions.
-- No download counter is included: without a backend it cannot be counted honestly.
+## SEO
 
-## Deploy to GitHub and Vercel
+- Metadata, canonical URL, Open Graph, Twitter cards and SoftwareApplication JSON-LD are in `index.html`.
+- Sitemap: `/sitemap.xml`
+- Robots: `/robots.txt`
+- Google Search Console verification: add the unique meta tag Google gives you inside `<head>` in `index.html`, deploy, then verify.
 
-```bash
-git init && git add . && git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<you>/swiftshare-website.git
-git push -u origin main
-```
+The site URL is currently configured as `https://swiftshareofficial.vercel.app/`. Update canonical, sitemap, robots and social URLs if you move to a custom domain. Search indexing is not guaranteed and may take time.
 
-Then in Vercel: Add New, Project, import the repository. It detects Vite (build `npm run build`, output `dist`). Every push to `main` redeploys. `vercel.json` handles page routing for `/privacy` and `/terms` and sets the APK headers.
+## Deploy to Vercel
 
-## Before going live
+Import the GitHub repository. Framework: Vite. Build command: `npm run build`. Output directory: `dist`. Every push to the production branch triggers a new deployment.
 
-- Edit `src/pages/Legal.tsx` (Privacy and Terms are placeholders), plus `LEGAL_UPDATED` and `CONTACT_EMAIL` in `src/config.ts`.
-- Review `src/data/faq.ts` so the answers match your app (for example, pricing).
+## Important
+
+Privacy and Terms pages are starter content and should be reviewed before public launch. The screenshots are placeholders until you add genuine app captures.

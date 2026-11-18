@@ -1,11 +1,36 @@
 {
-  "rewrites": [{ "source": "/((?!downloads/|assets/|release\\.json|favicon\\.svg).*)", "destination": "/index.html" }],
+  "rewrites": [
+    {
+      "source": "/((?!downloads/|assets/|release\\.json|favicon\\.svg|sitemap\\.xml|robots\\.txt|social-preview\\.svg).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
-    { "source": "/release.json", "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }] },
-    { "source": "/downloads/(.*)", "headers": [
-      { "key": "Content-Type", "value": "application/vnd.android.package-archive" },
-      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-      { "key": "X-Content-Type-Options", "value": "nosniff" }
-    ] }
+    {
+      "source": "/release.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/downloads/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.android.package-archive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
   ]
 }

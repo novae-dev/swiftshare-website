@@ -1,74 +1,18 @@
 import { useState } from "react";
-import { Copy, Check } from "lucide-react";
-import DownloadButton from "./DownloadButton";
+import { Copy, Check, Download, ShieldCheck } from "lucide-react";
 import { useRelease } from "../release";
-
-function Spec({ label, value }: { label: string; value?: string }) {
-  return (
-    <div className="spec">
-      <dt>{label}</dt>
-      <dd>{value || "Published with the release"}</dd>
-    </div>
-  );
+import type { Release } from "../types";
+function ReleaseCard({ item, available, featured=false }: { item: Release | null; available: boolean; featured?: boolean }) {
+ const [copied,setCopied]=useState(false);
+ if(!item) return <article className="release-card"><span className="release-label">Unavailable</span><h3>Release details pending</h3><p>This release is not currently configured.</p></article>;
+ const copy=async()=>{try{await navigator.clipboard.writeText(item.sha256);setCopied(true);setTimeout(()=>setCopied(false),1600)}catch{}};
+ return <article className={`release-card ${featured?'release-featured':''}`}>
+  <div className="release-top"><span className="release-label">{item.label}</span>{featured&&<span className="latest-tag">LATEST VERSION</span>}</div>
+  <h3>SwiftShare <strong>V{item.version}</strong></h3><p className="release-sub">{featured?'The newest SwiftShare release.':'Previous stable release.'}</p>
+  <div className="release-meta"><span><b>File size</b>{item.fileSize}</span><span><b>Android</b>{item.minimumAndroidVersion?`${item.minimumAndroidVersion}+`:'See device requirements'}</span><span><b>Release</b>{item.releaseDate||'Release build'}</span></div>
+  {available ? <a className={`btn ${featured?'btn-primary':'btn-ghost'} release-download`} href={item.downloadUrl} download={item.fileName}><Download size={18}/> Download {item.label} APK</a> : <button className="btn btn-ghost release-download" disabled>APK unavailable</button>}
+  <div className="checksum"><div><b>SHA-256</b><code>{item.sha256}</code></div><button onClick={copy} aria-label="Copy SHA-256" title="Copy checksum">{copied?<Check size={17}/>:<Copy size={17}/>}</button></div>
+  <p className="release-note"><ShieldCheck size={15}/> Download only from the official SwiftShare website. Android may scan sideloaded apps.</p>
+ </article>
 }
-
-export default function Download() {
-  const s = useRelease();
-  const [copied, setCopied] = useState(false);
-  const r = s.status === "loading" ? null : s.release;
-  const ready = s.status === "ready";
-
-  const copy = async () => {
-    if (!r?.sha256) return;
-    try {
-      await navigator.clipboard.writeText(r.sha256);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* clipboard unavailable; the checksum is still selectable */
-    }
-  };
-
-  return (
-    <section id="download" className="section">
-      <div className="wrap">
-        <div className="dl-card">
-          <div className="dl-head">
-            <div>
-              <h2>{ready ? `Download SwiftShare ${r!.version}` : "Download SwiftShare"}</h2>
-              <p>{ready ? "Official APK for Android, hosted on this website." : "SwiftShare is preparing for its first release."}</p>
-            </div>
-            <DownloadButton variant="light" />
-          </div>
-          <dl className="specs">
-            <Spec label="Version" value={ready ? r!.version : undefined} />
-            <Spec label="File size" value={ready ? r!.fileSize : undefined} />
-            <Spec label="Android" value={ready && r!.minimumAndroidVersion ? `${r!.minimumAndroidVersion} or newer` : undefined} />
-            <Spec label="Release date" value={ready ? r!.releaseDate : undefined} />
-          </dl>
-          <div className="dl-lower">
-            <div>
-              <h3>What's new</h3>
-              {ready && r!.releaseNotes.length > 0 ? (
-                <ul className="notes">{r!.releaseNotes.map((n) => <li key={n}>{n}</li>)}</ul>
-              ) : (
-                <p className="muted-light">Release notes will appear here with the first release.</p>
-              )}
-            </div>
-            <div>
-              <h3>SHA-256 checksum</h3>
-              {ready && r!.sha256 ? (
-                <div className="hash">
-                  <code>{r!.sha256}</code>
-                  <button onClick={copy} aria-label="Copy checksum">{copied ? <Check size={16} /> : <Copy size={16} />}</button>
-                </div>
-              ) : (
-                <p className="muted-light">The checksum will be published with the APK.</p>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+export default function Download(){const s=useRelease();const latest=s.status==='ready'?s.release:null;const stable=s.status==='ready'?s.stable:s.status==='unavailable'?s.stable:null;return <section id="download" className="section download-section"><div className="wrap"><div className="section-heading"><span className="eyebrow">GET SWIFTSHARE</span><h2>Choose your download.</h2><p>Both releases are available directly from the official SwiftShare website.</p></div><div className="release-grid"><ReleaseCard item={latest || (s.status==='unavailable'?s.release:null)} available={s.status==='ready'} featured/><ReleaseCard item={stable} available={!!stable}/></div><p className="download-footnote">APK files are Android application packages. Your device may display a security prompt before installation. Only install software you trust.</p></div></section>}
