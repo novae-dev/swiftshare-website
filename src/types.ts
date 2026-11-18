@@ -8,9 +8,11 @@
   fileSize: string;
   sha256: string;
   minimumAndroidVersion: string;
+  compatibility: string;
+  requirements: string[];
   available: boolean;
   releaseNotes: string[];
-  supportedFeatures?: string[];
+  supportedFeatures: string[];
 }
 
 export interface ReleaseCatalog {

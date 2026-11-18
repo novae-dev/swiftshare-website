@@ -1,6 +1,13 @@
 ﻿import { useState } from "react";
-import { Copy, Check, Download as DownloadIcon, ShieldCheck } from "lucide-react";
+import {
+  Copy,
+  Check,
+  Download as DownloadIcon,
+  ShieldCheck,
+  ChevronDown,
+} from "lucide-react";
 import { useRelease } from "../release";
+import { features } from "../data/features";
 import type { Release } from "../types";
 
 function ReleaseCard({
@@ -32,6 +39,10 @@ function ReleaseCard({
       ? "The original stable release."
       : "A previous SwiftShare release.";
 
+  const includedFeatures = features.filter((feature) =>
+    item.supportedFeatures?.includes(feature.id)
+  );
+
   return (
     <article className={`release-card ${featured ? "release-featured" : ""}`}>
       <div className="release-top">
@@ -46,14 +57,18 @@ function ReleaseCard({
       <p className="release-sub">{description}</p>
 
       <div className="release-meta">
-        <span><b>File size</b>{item.fileSize}</span>
         <span>
-          <b>Android</b>
-          {item.minimumAndroidVersion
-            ? `${item.minimumAndroidVersion}+`
-            : "See device requirements"}
+          <b>File size</b>
+          {item.fileSize}
         </span>
-        <span><b>Release</b>{item.releaseDate || "Release build"}</span>
+        <span>
+          <b>Minimum Android</b>
+          {item.minimumAndroidVersion}
+        </span>
+        <span>
+          <b>Release</b>
+          {item.releaseDate || "Date not specified"}
+        </span>
       </div>
 
       {available ? (
@@ -71,6 +86,51 @@ function ReleaseCard({
         </button>
       )}
 
+      <details className="release-details">
+        <summary>
+          Version details
+          <ChevronDown size={17} />
+        </summary>
+
+        <div className="release-details-content">
+          <div>
+            <h4>Included features</h4>
+            {includedFeatures.length > 0 ? (
+              <ul>
+                {includedFeatures.map((feature) => (
+                  <li key={feature.id}>{feature.title}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No feature information available.</p>
+            )}
+          </div>
+
+          <div>
+            <h4>Device compatibility</h4>
+            <p>{item.compatibility}</p>
+          </div>
+
+          <div>
+            <h4>Requirements</h4>
+            <ul>
+              {item.requirements.map((requirement) => (
+                <li key={requirement}>{requirement}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4>Release notes</h4>
+            <ul>
+              {item.releaseNotes.map((note, index) => (
+                <li key={index}>{note}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </details>
+
       <div className="checksum">
         <div>
           <b>SHA-256</b>
@@ -83,7 +143,8 @@ function ReleaseCard({
 
       <p className="release-note">
         <ShieldCheck size={15} />
-        Download only from the official SwiftShare website. Android may scan sideloaded apps.
+        Download only from the official SwiftShare website. Android may scan
+        sideloaded apps.
       </p>
     </article>
   );
@@ -102,7 +163,10 @@ export default function Download() {
         <div className="section-heading">
           <span className="eyebrow">GET SWIFTSHARE</span>
           <h2>Choose your download.</h2>
-          <p>All three SwiftShare releases are available independently.</p>
+          <p>
+            Explore the available SwiftShare releases and choose the version
+            that suits your device.
+          </p>
         </div>
 
         <div className="release-grid">
@@ -124,8 +188,9 @@ export default function Download() {
         </div>
 
         <p className="download-footnote">
-          APK files are Android application packages. Your device may display a
-          security prompt before installation. Only install software you trust.
+          APK files are Android application packages. Your device may display
+          a security prompt before installation. Only install software you
+          trust.
         </p>
       </div>
     </section>

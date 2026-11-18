@@ -1,4 +1,4 @@
-import { ImagePlus } from "lucide-react";
+﻿import { ImagePlus } from "lucide-react";
 const slots = [
   ["Home screen", "The SwiftShare home interface."],
   ["Send files", "Selecting content to share."],
@@ -38,3 +38,4 @@ export default function Screenshots() {
     </section>
   );
 }
+

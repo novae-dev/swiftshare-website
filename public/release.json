@@ -1,63 +1,85 @@
 ﻿{
-    "appName":  "SwiftShare",
-    "latest":  {
-                   "label":  "Latest",
-                   "version":  "3.0.0",
-                   "versionCode":  3,
-                   "releaseDate":  "",
-                   "fileName":  "SwiftShare-v3.apk",
-                   "downloadUrl":  "/downloads/SwiftShare-v3.apk",
-                   "fileSize":  "65.39 MB",
-                   "sha256":  "BBB168DCAC88BD80A6028233E77DC85136855FE5F0DA3CAE4F5FC9F30EA5C5FB",
-                   "minimumAndroidVersion":  "",
-                   "available":  true,
-                   "releaseNotes":  [
-                                        "SwiftShare V3 release."
-                                    ],
-                   "supportedFeatures":  [
-                                             "apk-sharing",
-                                             "nearby-transfer",
-                                             "media-sharing",
-                                             "file-sharing",
-                                             "qr-connection",
-                                             "transfer-progress"
-                                         ]
-               },
-    "previous":  {
-                     "label":  "Previous",
-                     "version":  "2.0.0",
-                     "versionCode":  2,
-                     "releaseDate":  "",
-                     "fileName":  "SwiftShare_V2.apk",
-                     "downloadUrl":  "/downloads/SwiftShare_V2.apk",
-                     "fileSize":  "48.45 MB",
-                     "sha256":  "ff3ef0b549add3148a23d4326d71726247c3273a66228ac0dc53dc15dc9dddd3",
-                     "minimumAndroidVersion":  "",
-                     "available":  true,
-                     "releaseNotes":  [
-                                          "V2 includes installed-app discovery, APK extraction and nearby send/receive."
-                                      ],
-                     "supportedFeatures":  [
-                                               "apk-sharing",
-                                               "nearby-transfer"
-                                           ]
-                 },
-    "stable":  {
-                   "label":  "Stable",
-                   "version":  "1.0.0",
-                   "versionCode":  1,
-                   "releaseDate":  "",
-                   "fileName":  "SwiftShare-v1.0.0.apk",
-                   "downloadUrl":  "/downloads/SwiftShare-v1.0.0.apk",
-                   "fileSize":  "47.28 MB",
-                   "sha256":  "187224cb76e36cfad04acfc51a1f8e0e928e278dbb5cc2ae342fbd396fcd4b4d",
-                   "minimumAndroidVersion":  "",
-                   "available":  true,
-                   "releaseNotes":  [
-                                        "V1.0.0 stable release."
-                                    ],
-                   "supportedFeatures":  [
-                                             "apk-sharing"
-                                         ]
-               }
+  "appName": "SwiftShare",
+  "latest": {
+    "label": "Latest",
+    "version": "3.0.0",
+    "versionCode": 3,
+    "releaseDate": "",
+    "fileName": "SwiftShare-v3.apk",
+    "downloadUrl": "/downloads/SwiftShare-v3.apk",
+    "fileSize": "65.39 MB",
+    "sha256": "BBB168DCAC88BD80A6028233E77DC85136855FE5F0DA3CAE4F5FC9F30EA5C5FB",
+    "minimumAndroidVersion": "Android 7.0 (Nougat)",
+    "compatibility": "Android 7.0 and newer (API 24+)",
+    "requirements": [
+      "An Android phone or tablet",
+      "Bluetooth and Wi-Fi for nearby transfers",
+      "Nearby-device permissions when requested",
+      "Camera access when scanning QR codes",
+      "App visibility permission for installed-app discovery"
+    ],
+    "available": true,
+    "releaseNotes": [
+      "Universal file sharing across supported content types.",
+      "Nearby device sending and receiving.",
+      "QR-code device pairing.",
+      "Transfer progress and recovery features."
+    ],
+    "supportedFeatures": [
+      "apk-sharing",
+      "nearby-transfer",
+      "media-sharing",
+      "file-sharing",
+      "qr-connection",
+      "transfer-progress"
+    ]
+  },
+  "previous": {
+    "label": "Previous",
+    "version": "2.0.0",
+    "versionCode": 2,
+    "releaseDate": "",
+    "fileName": "SwiftShare_V2.apk",
+    "downloadUrl": "/downloads/SwiftShare_V2.apk",
+    "fileSize": "48.45 MB",
+    "sha256": "ff3ef0b549add3148a23d4326d71726247c3273a66228ac0dc53dc15dc9dddd3",
+    "minimumAndroidVersion": "Android 7.0 (Nougat)",
+    "compatibility": "Android 7.0 and newer (API 24+)",
+    "requirements": [
+      "An Android phone or tablet",
+      "Nearby transfer requires compatible Bluetooth and Wi-Fi capabilities"
+    ],
+    "available": true,
+    "releaseNotes": [
+      "Introduced installed-app discovery and APK extraction.",
+      "Added nearby sending and receiving."
+    ],
+    "supportedFeatures": [
+      "apk-sharing",
+      "nearby-transfer"
+    ]
+  },
+  "stable": {
+    "label": "Stable",
+    "version": "1.0.0",
+    "versionCode": 1,
+    "releaseDate": "",
+    "fileName": "SwiftShare-v1.0.0.apk",
+    "downloadUrl": "/downloads/SwiftShare-v1.0.0.apk",
+    "fileSize": "47.28 MB",
+    "sha256": "187224cb76e36cfad04acfc51a1f8e0e928e278dbb5cc2ae342fbd396fcd4b4d",
+    "minimumAndroidVersion": "Android 7.0 (Nougat)",
+    "compatibility": "Android 7.0 and newer (API 24+)",
+    "requirements": [
+      "An Android phone or tablet"
+    ],
+    "available": true,
+    "releaseNotes": [
+      "Original SwiftShare release.",
+      "Introduced APK sharing."
+    ],
+    "supportedFeatures": [
+      "apk-sharing"
+    ]
+  }
 }

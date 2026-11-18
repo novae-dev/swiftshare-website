@@ -1,4 +1,4 @@
-const steps = [
+﻿const steps = [
   "Download the APK from the official SwiftShare website.",
   "Open the downloaded APK from your notifications or Files app.",
   "Follow Android's installation prompts.",
@@ -24,3 +24,4 @@ export default function Install() {
     </section>
   );
 }
+

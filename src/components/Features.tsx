@@ -1,5 +1,8 @@
 ﻿import { Check, Clock } from "lucide-react";
-import { features } from "../data/features";
+import {
+  features,
+  upcomingFeatures,
+} from "../data/features";
 import { useRelease } from "../release";
 
 export default function Features() {
@@ -14,21 +17,23 @@ export default function Features() {
     <section id="features" className="section">
       <div className="wrap split">
         <div>
+          <span className="eyebrow">SWIFTSHARE CAPABILITIES</span>
           <h2>What SwiftShare does</h2>
           <p className="lead">
-            Explore the features included in the latest SwiftShare release.
+            From sharing installed applications to transferring files between
+            nearby devices, explore what is available in SwiftShare.
           </p>
         </div>
 
         <ul className="feature-list">
-          {features.map((f) => {
-            const released = supported.includes(f.id);
+          {features.map((feature) => {
+            const released = supported.includes(feature.id);
 
             return (
-              <li key={f.id}>
+              <li key={feature.id}>
                 <div>
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.text}</p>
                 </div>
 
                 <span className={`pill ${released ? "pill-on" : ""}`}>
@@ -37,12 +42,36 @@ export default function Features() {
                   ) : (
                     <Clock size={14} aria-hidden />
                   )}
-                  {released ? "In latest release" : "In development"}
+                  {released ? "Available in V3" : "Not in latest release"}
                 </span>
               </li>
             );
           })}
         </ul>
+      </div>
+
+      <div className="wrap roadmap-section">
+        <div className="section-heading">
+          <span className="eyebrow">WHAT'S NEXT</span>
+          <h2>More is on the way.</h2>
+          <p>
+            SwiftShare is being developed with more ways to move files between
+            devices.
+          </p>
+        </div>
+
+        <div className="roadmap-grid">
+          {upcomingFeatures.map((feature) => (
+            <article className="roadmap-card" key={feature.title}>
+              <span className="pill">
+                <Clock size={14} aria-hidden />
+                Planned
+              </span>
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

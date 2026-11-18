@@ -1,3 +1,128 @@
-import { ArrowUpRight, Smartphone, Zap, ShieldCheck, Wifi , ArrowDown} from "lucide-react";
+﻿import {
+  ArrowDown,
+  ArrowUpRight,
+  ArrowLeftRight,
+  ChevronRight,
+  MoreHorizontal,
+  Smartphone,
+  ShieldCheck,
+  Wifi,
+  Zap,
+} from "lucide-react";
+
 import DownloadButton from "./DownloadButton";
-export default function Hero(){return <section id="home" className="hero"><div className="wrap hero-grid"><div className="hero-copy"><span className="eyebrow hero-eyebrow"><span className="live-dot"/> MADE FOR SIMPLE SHARING</span><h1>Move files.<br/><em>Not hassle.</em></h1><p className="lead">A straightforward way to share apps and files between Android devices. Pick what you want to send and get sharing.</p><div className="actions"><DownloadButton/><a className="btn btn-ghost" href="#screenshots">Explore the app <ArrowDown size={17}/></a></div><p className="hint"><Smartphone size={17}/> Built for Android <span className="hint-divider">·</span> APK download</p></div><div className="hero-art"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="hero-device"><div className="device-top"><span>SwiftShare</span><span className="device-menu">•••</span></div><div className="device-brand"><div className="device-logo">↗</div><b>Share anything.<br/>Simply.</b><small>Choose how you want to get started.</small></div><div className="device-action"><span className="device-action-icon"><ArrowUpRight/></span><span><b>Send files</b><small>Share with another device</small></span><span>›</span></div><div className="device-action"><span className="device-action-icon receive"><Wifi/></span><span><b>Receive files</b><small>Get files from nearby devices</small></span><span>›</span></div><div className="device-bottom"><span>⌂</span><span>↔</span><span>▤</span></div></div><div className="float-chip chip-one"><Zap size={16}/> Simple sharing</div><div className="float-chip chip-two"><ShieldCheck size={16}/> Your files, your choice</div><span className="hero-orbit-caption">SWIFTSHARE / ANDROID</span></div></div></section>}
+
+export default function Hero() {
+  return (
+    <section id="home" className="hero">
+      <div className="wrap hero-grid">
+        <div className="hero-copy">
+          <span className="eyebrow hero-eyebrow">
+            <span className="live-dot" />
+            MADE FOR SIMPLE SHARING
+          </span>
+
+          <h1>
+            Share apps and files.
+            <br />
+            <em>Simply.</em>
+          </h1>
+
+          <p className="lead">
+            SwiftShare makes it easy to share Android apps and files
+            between devices. Choose what you want to send and start sharing.
+          </p>
+
+          <div className="actions">
+            <DownloadButton />
+
+            <a className="btn btn-ghost" href="#screenshots">
+              Explore the app <ArrowDown size={17} />
+            </a>
+          </div>
+
+          <p className="hint">
+            <Smartphone size={17} />
+            Built for Android
+            <span className="hint-divider">·</span>
+            APK download
+          </p>
+        </div>
+
+        <div className="hero-art">
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+
+          <div className="hero-device">
+            <div className="device-top">
+              <span>SwiftShare</span>
+              <span className="device-menu">
+                <MoreHorizontal size={20} />
+              </span>
+            </div>
+
+            <div className="device-brand">
+              <div className="device-logo">
+                <ArrowUpRight size={24} />
+              </div>
+
+              <b>
+                Share anything.
+                <br />
+                Simply.
+              </b>
+
+              <small>Choose how you want to get started.</small>
+            </div>
+
+            <div className="device-action">
+              <span className="device-action-icon">
+                <ArrowUpRight />
+              </span>
+
+              <span>
+                <b>Send files</b>
+                <small>Share with another device</small>
+              </span>
+
+              <ChevronRight size={18} />
+            </div>
+
+            <div className="device-action">
+              <span className="device-action-icon receive">
+                <Wifi />
+              </span>
+
+              <span>
+                <b>Receive files</b>
+                <small>Get files from nearby devices</small>
+              </span>
+
+              <ChevronRight size={18} />
+            </div>
+
+            <div className="device-bottom">
+              <Smartphone size={16} />
+              <ArrowLeftRight size={16} />
+              <MoreHorizontal size={16} />
+            </div>
+          </div>
+
+          <div className="float-chip chip-one">
+            <Zap size={16} />
+            Simple sharing
+          </div>
+
+          <div className="float-chip chip-two">
+            <ShieldCheck size={16} />
+            Your files, your choice
+          </div>
+
+          <span className="hero-orbit-caption">
+            SWIFTSHARE / ANDROID
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
