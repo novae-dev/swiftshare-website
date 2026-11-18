@@ -74,7 +74,7 @@ function ReleaseCard({
       {available ? (
         <a
           className={`btn ${featured ? "btn-primary" : "btn-ghost"} release-download`}
-          href={item.downloadUrl}
+          href={"/api/download?version=" + encodeURIComponent(item.version)}
           download={item.fileName}
         >
           <DownloadIcon size={18} />
@@ -196,3 +196,4 @@ export default function Download() {
     </section>
   );
 }
+

@@ -226,3 +226,118 @@ body{background:#fff;color:var(--navy)} .wrap{width:min(1160px,100% - 44px)} .se
     grid-template-columns: 1fr;
   }
 }
+/* Public download statistics */
+.stats-section {
+  padding-top: 36px;
+  padding-bottom: 36px;
+  background: #fff;
+}
+
+.stats-panel {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 26px 42px;
+  align-items: center;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #f5f8ff, #fff 70%);
+  box-shadow: 0 18px 50px #1b3c760d;
+}
+
+.stats-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.stats-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  color: #1740c9;
+  background: #e5efff;
+}
+
+.stats-intro h2 {
+  margin: 8px 0;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.stats-intro p {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+.stats-total {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+}
+
+.stats-total span,
+.stats-versions span {
+  color: var(--ink-2);
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.stats-total strong {
+  color: #1740c9;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-versions {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  gap: 14px;
+}
+
+.stats-versions div {
+  display: grid;
+  gap: 4px;
+}
+
+.stats-versions strong {
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-note {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: -12px 0 0;
+  color: #77849a;
+  font-size: .78rem;
+}
+
+@media (max-width: 680px) {
+  .stats-panel {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .stats-total {
+    justify-items: start;
+  }
+
+  .stats-versions {
+    grid-column: auto;
+  }
+
+  .stats-note {
+    grid-column: auto;
+    margin-top: -8px;
+  }
+}

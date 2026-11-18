@@ -15,7 +15,7 @@ export default function DownloadButton({
     return (
       <a
         className={cls}
-        href={s.latest.downloadUrl}
+        href={"/api/download?version=" + encodeURIComponent(s.latest.version)}
         download={s.latest.fileName}
       >
         <Download size={18} aria-hidden /> {label}
@@ -30,3 +30,4 @@ export default function DownloadButton({
     </button>
   );
 }
+
