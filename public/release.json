@@ -1,4 +1,4 @@
-{
+﻿{
   "appName": "SwiftShare",
   "latest": {
     "label": "Latest",
@@ -12,9 +12,9 @@
     "minimumAndroidVersion": "",
     "available": true,
     "releaseNotes": [
-      "SwiftShare V2 release. See the app for the features included in this build."
+      "V2 includes installed-app discovery, APK extraction and nearby send/receive."
     ],
-    "supportedFeatures": []
+    "supportedFeatures": ["apk-sharing", "nearby-transfer"]
   },
   "stable": {
     "label": "Stable",
@@ -28,8 +28,8 @@
     "minimumAndroidVersion": "",
     "available": true,
     "releaseNotes": [
-      "SwiftShare V1.0.0 stable release."
+      "V1.0.0 stable release."
     ],
-    "supportedFeatures": []
+    "supportedFeatures": ["apk-sharing"]
   }
 }

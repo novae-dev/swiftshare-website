@@ -1,4 +1,4 @@
-import { Check, Clock } from "lucide-react";
+﻿import { Check, Clock } from "lucide-react";
 import { features } from "../data/features";
 import { useRelease } from "../release";
 
@@ -10,7 +10,7 @@ export default function Features() {
       <div className="wrap split">
         <div>
           <h2>What SwiftShare does</h2>
-          <p className="lead">Features marked Released are in the APK you can download now. Planned features are not available yet.</p>
+          <p className="lead">See what is included in the current V2 download and what is being developed for future releases.</p>
         </div>
         <ul className="feature-list">
           {features.map((f) => {
@@ -23,7 +23,7 @@ export default function Features() {
                 </div>
                 <span className={`pill ${released ? "pill-on" : ""}`}>
                   {released ? <Check size={14} aria-hidden /> : <Clock size={14} aria-hidden />}
-                  {released ? "Released" : "Planned"}
+                  {released ? "In V2" : "In development"}
                 </span>
               </li>
             );
@@ -33,3 +33,4 @@ export default function Features() {
     </section>
   );
 }
+
